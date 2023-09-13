@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        background: rgba(192, 192, 192, 0.171);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      main {
+        padding: 1rem;
+        width: 50%;
+        box-shadow: 0 0 3px #f6ae84;
+        border-radius: 5px;
+        border-bottom-right-radius: 3rem;
+      }
+      form {
+        padding: 1rem 0.5rem;
+      }
+      .input-group {
+        display: inline-block;
+      }
+      .input-group label {
+        display: block;
+        margin-left: 0.5rem;
+        margin: 0.5rem 0;
+      }
+      .input-group input {
+        width: 40%;
+        padding: 0.5rem;
+        outline: none;
+        border: none;
+        box-shadow: 0 0 2px #f6ae84;
+        border-radius: 5px;
+      }
+      form button {
+        background: #f6ae84;
+        color: #222;
+        border-radius: 5px;
+        outline: none;
+        border: 2px solid transparent;
+        padding: 0.4rem;
+        margin-top: 1rem;
+      }
+      .screen {
+        width: 90%;
+        margin: 0 auto;
+      }
+      .screen h3 {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        font-size: 3rem;
+        font-style: italic;
+      }
+      .screen span {
+        color: #f6ae84;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="BitForce.png" alt="" width="400" />
+    <main>
+      <form action="">
+        <div class="input-group">
+          <label for="date">Date</label>
+          <input type="text" id="date" placeholder="date" />
+        </div>
+        <div class="input-group">
+          <label for="month">Month</label>
+          <input type="text" id="month" placeholder="month" />
+        </div>
+        <div class="input-group">
+          <label for="year">Year:</label>
+          <input type="text" id="year" placeholder="year" />
+        </div>
+
+        <button onclick="calculate(event)">Calculate</button>
+      </form>
+      <hr />
+      <div class="screen">
+        <h3><span class="date">35</span> Days</h3>
+        <h3><span class="month">3</span> Months</h3>
+        <h3><span class="year">35</span> Years</h3>
+      </div>
+    </main>
+
+    <script>
+      let day = new Date().getDate();
+      let month = new Date().getMonth();
+      let year = new Date().getFullYear();
+
+      console.log(day, month, year);
+      function calculate(e) {
+        e.preventDefault();
+        let userDate = +document.getElementById("date").value;
+        let userMonth = +document.getElementById("month").value;
+        let userYear = +document.getElementById("year").value;
+
+        let valueDate = document.querySelector(".date").textContent;
+        let valueMonth = document.querySelector(".month").textContent;
+        let valueYear = document.querySelector(".year").textContent;
+
+        let ageDay = day - userDate;
+        let ageMonth = month - userDate;
+        let ageYear = day - userDate;
+      }
+      /*
+      year/month/day and the current year/month/day:
+years = birth_year - current_year;
+months = birth_month - current_month; and
+day = birth_day - current_day.
+Replace them in the following formula: age = (years × 365) + (months × 31) + days.
+
+Divide the result by years from step 1 and truncate it to get the age in years.
+
+Multiply the remainder of step 3 by 12 and truncate it to get the months.
+
+Multiply this last remainder by 31 to get the days
+      */
+    </script>
+  </body>
+</html>
