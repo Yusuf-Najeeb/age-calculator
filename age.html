@@ -89,45 +89,54 @@
       </form>
       <hr />
       <div class="screen">
-        <h3><span class="date">35</span> Days</h3>
-        <h3><span class="month">3</span> Months</h3>
-        <h3><span class="year">35</span> Years</h3>
+        <h3><span class="date"></span> Days</h3>
+        <h3><span class="month"></span> Months</h3>
+        <h3><span class="year"></span> Years</h3>
       </div>
     </main>
-
     <script>
       let day = new Date().getDate();
       let month = new Date().getMonth();
       let year = new Date().getFullYear();
 
-      console.log(day, month, year);
       function calculate(e) {
         e.preventDefault();
         let userDate = +document.getElementById("date").value;
         let userMonth = +document.getElementById("month").value;
         let userYear = +document.getElementById("year").value;
 
-        let valueDate = document.querySelector(".date").textContent;
-        let valueMonth = document.querySelector(".month").textContent;
-        let valueYear = document.querySelector(".year").textContent;
+        let valueDate = document.querySelector(".date");
+        let valueMonth = document.querySelector(".month");
+        let valueYear = document.querySelector(".year");
 
-        let ageDay = day - userDate;
-        let ageMonth = month - userDate;
-        let ageYear = day - userDate;
+        // Covert User input
+        let calcYear = (userYear *= 365);
+        let calcMonth = (userMonth *= 31);
+        let calcdays = userDate;
+        let totalDays = calcYear + calcMonth + calcdays;
+
+        //Covert Current date
+        let calCurYear = year * 365;
+        let calCurMonth = month * 31;
+        let calCurDay = day;
+        let totalCurDays = calCurYear + calCurMonth + calCurDay;
+
+        let calculatedAge = totalCurDays - totalDays;
+
+        // Get user Age
+        let cumulativeYear = calculatedAge / 365;
+
+        let actualYear = Math.floor(cumulativeYear);
+        let remainderYears = cumulativeYear - Math.floor(cumulativeYear);
+        let cumulativeMonth = remainderYears * 12;
+        let actualMonth = Math.floor(cumulativeMonth);
+        let remainderMonths = cumulativeMonth - actualMonth;
+        let days = Math.floor(remainderMonths * 31);
+
+        valueDate.textContent = days;
+        valueMonth.textContent = actualMonth;
+        valueYear.textContent = actualYear;
       }
-      /*
-      year/month/day and the current year/month/day:
-years = birth_year - current_year;
-months = birth_month - current_month; and
-day = birth_day - current_day.
-Replace them in the following formula: age = (years × 365) + (months × 31) + days.
-
-Divide the result by years from step 1 and truncate it to get the age in years.
-
-Multiply the remainder of step 3 by 12 and truncate it to get the months.
-
-Multiply this last remainder by 31 to get the days
-      */
     </script>
   </body>
 </html>
