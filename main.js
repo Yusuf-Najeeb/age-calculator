@@ -1,4 +1,5 @@
-function calculate() {
+function calculate(e) {
+  e.preventDefault();
   // Get input values
   var num1 = parseFloat(document.getElementById("num1").value);
   var num2 = parseFloat(document.getElementById("num2").value);
